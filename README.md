@@ -2,15 +2,16 @@
 
 __Requirements:__
 
-docker:
+Install docker:  
 https://docs.docker.com/docker-for-mac/install/  
-minikube: 
+Install minikube:  
 https://kubernetes.io/docs/tasks/tools/install-minikube/  
-kubectl: 
+Install kubectl:  
 https://kubernetes.io/docs/tasks/tools/install-kubectl/  
-helm: 
-https://helm.sh/docs/using_helm/#installing-helm
-
+Install helm:  
+https://helm.sh/docs/using_helm/#installing-helm  
+Install virtual box:  
+https://www.virtualbox.org/wiki/Downloads
 
 # Apache Kafka / Confluent
 
@@ -105,7 +106,7 @@ https://github.com/ahmetb/kubectl-aliases
 
 ```
 # Install minikube and start
-brew cast install minikube
+brew cask install minikube
 minikube start
 
 # Install kubectl and move to usr/bin
@@ -119,9 +120,13 @@ helm init --history-max 200
 helm repo update
 
 # Install kafka
+helm repo add confluentinc https://confluentinc.github.io/cp-helm-charts/
+helm repo update
+cd kafka
 helm install --name kafka-minik --namespace kafka -f values.yaml confluentinc/cp-helm-charts
 
 # Install flink
+kubectl create namespace flink
 kubectl apply -f ./flink
 
 # Install prometheus + grafana
